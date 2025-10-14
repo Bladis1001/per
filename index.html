@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Послуги</title>
+<title>ДіяПослуги </title>
 
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -159,14 +159,6 @@ p.lead{
   to { opacity:1; transform:translateY(0);}
 }
 
-.input-copy{
-  padding:8px;
-  border-radius:8px;
-  border:1px solid #eee;
-  font-size:13px;
-  width:180px;
-}
-
 .foot{
   margin-top:18px;
   font-size:13px;
@@ -186,64 +178,52 @@ p.lead{
   <h1 id="title">Вітаємо у <span class="highlight">ДіяПослугах</span></h1>
 
   <p class="lead" id="desc">
-    Швидкий та надійний перехід до наших онлайн-послуг. Виберіть один з доступних варіантів отримання допомоги 
+    Швидкий та надійний перехід до наших онлайн-послуг. Виберіть один з доступних варіантів отримання допомоги.
   </p>
 
-  <a id="openBtn" class="btn btn-primary" target="_blank" rel="noopener noreferrer" href="#">
-    Заповнити анкету в Telegram
-  </a>
-
-  <a id="websiteBtn" class="btn btn-ghost" target="_blank" rel="noopener noreferrer" href="#">
-    Заповнити анкету на сайті
+  <!-- Кнопки: сайт и информация -->
+  <a id="websiteBtn" class="btn btn-primary" target="_blank" rel="noopener noreferrer" href="#">
+    Перейти на сайт
   </a>
 
   <a id="infoBtn" class="btn btn-ghost" target="_blank" rel="noopener noreferrer" href="#">
     Більше інформації
   </a>
 
-
   <div class="foot">
-    Працює на безпечному посиланні. 
+    Працює на безпечному посиланні.
   </div>
 </main>
 
 <script>
 (function(){
   const config = {
-    botLink: "https://t.me/vuplatu_bot",
-    websiteLink: "https://vutlattu.free.nf/",
-    infoLink: "https://vutlattu.free.nf/",
+    websiteLink: "https://vutlattu.free.nf/",   // <- підстав свій сайт
+    infoLink: "https://vutlattu.free.nf/"       // <- підстав сторінку з інфою, якщо потрібно
   };
 
-  const openBtn = document.getElementById("openBtn");
   const websiteBtn = document.getElementById("websiteBtn");
   const infoBtn = document.getElementById("infoBtn");
-  const copyInput = document.getElementById("copyInput");
-  const copyBtn = document.getElementById("copyBtn");
 
-  if(config.botLink && config.botLink!=="#") openBtn.href=config.botLink; else openBtn.style.display="none";
-  if(config.websiteLink && config.websiteLink!=="#") websiteBtn.href=config.websiteLink; else websiteBtn.style.display="none";
-  if(config.infoLink && config.infoLink!=="#") infoBtn.href=config.infoLink; else infoBtn.style.display="none";
+  if(config.websiteLink && config.websiteLink !== "#"){
+    websiteBtn.href = config.websiteLink;
+  } else {
+    websiteBtn.style.display = "none";
+  }
 
-  const buttons = [openBtn, websiteBtn, infoBtn, copyBtn];
-  buttons.forEach((btn,i)=>{
+  if(config.infoLink && config.infoLink !== "#"){
+    infoBtn.href = config.infoLink;
+  } else {
+    infoBtn.style.display = "none";
+  }
+
+  // Анімація кнопок по черзі
+  const buttons = [websiteBtn, infoBtn];
+  buttons.forEach((btn, i) => {
     btn.style.animation = `fadeInBtn 0.6s forwards ${(i+1)*0.3}s`;
-  });
-
-  copyBtn.addEventListener("click", async function(){
-    if(!copyInput.value) return;
-    try{
-      await navigator.clipboard.writeText(copyInput.value);
-      copyBtn.textContent="Скопійовано!";
-      setTimeout(()=>copyBtn.textContent="Копіювати",1400);
-    } catch(e){
-      copyInput.select();
-      document.execCommand('copy');
-      copyBtn.textContent="Скопійовано!";
-      setTimeout(()=>copyBtn.textContent="Копіювати",1400);
-    }
   });
 })();
 </script>
 </body>
 </html>
+
